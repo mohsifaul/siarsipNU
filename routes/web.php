@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\KeuanganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,8 @@ Route::get('/laravel', function () {
 Route::get('/data-inventaris', function () {
     return view('pages.inventaris.main');
 });
-// Route::get('/data-anggota', function () {
-//     return view('pages.anggota.main');
+// Route::get('/data-keuangan', function () {
+//     return view('pages.keuangan.main');
 // });
 // Route::get('/tambah-anggota', function () {
 //     return view('pages.anggota.tambah');
@@ -68,3 +69,4 @@ Route::post('/proker/{id}/terlaksana', [ProkerController::class, 'tandaiTerlaksa
 Route::post('/proker/{id}', [ProkerController::class, 'hapusProker'])->name('proker.hapus');
 Route::get('/getProkerFiles/{id}', [ProkerController::class, 'getFiles'])->name('proker.getFiles');
 
+Route::get('/data-keuangan', [KeuanganController::class, 'index'])->name('keuangan');
