@@ -171,4 +171,50 @@
             </div>
         </div>
     </div>
+    <!-- Keuangan Overview -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-wallet mr-2"></i>Ringkasan Keuangan</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-4 mb-2">
+                            <div class="card card-success shadow-sm">
+                                <div class="card-body py-3">
+                                    <h6 class="text-muted mb-2">Total Pemasukan</h6>
+                                    <h3 class="mb-0 text-success">
+                                        Rp {{ number_format($totalPemasukan ?? 0, 0, ',', '.') }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div class="card card-danger shadow-sm">
+                                <div class="card-body py-3">
+                                    <h6 class="text-muted mb-2">Total Pengeluaran</h6>
+                                    <h3 class="mb-0 text-danger">
+                                        Rp {{ number_format($totalPengeluaran ?? 0, 0, ',', '.') }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <div
+                                class="card {{ $totalPemasukan - $totalPengeluaran >= 0 ? 'card-primary' : 'card-warning' }} shadow-sm">
+                                <div class="card-body py-3">
+                                    <h6 class="text-muted mb-2">Saldo Akhir</h6>
+                                    <h3 class="mb-0">
+                                        Rp
+                                        {{ number_format(($totalPemasukan ?? 0) - ($totalPengeluaran ?? 0), 0, ',', '.') }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

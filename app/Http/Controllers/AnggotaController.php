@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anggota;
 use App\Models\Inventaris;
+use App\Models\Keuangan;
 use App\Models\Proker;
 use App\Models\Surats;
 use Illuminate\Http\Request;
@@ -28,6 +29,10 @@ class AnggotaController extends Controller
         // Inventaris total dari kolom jumlah
         $totalInventaris = Inventaris::sum('jumlah');
 
+        // Keuangan
+        $totalPemasukan = Keuangan::where('jenis', 'pemasukan')->sum('jumlah');
+        $totalPengeluaran = Keuangan::where('jenis', 'pengeluaran')->sum('jumlah');
+
         return view('pages.dashboard', compact(
             'totalAnggota',
             'totalSuratMasuk',
@@ -37,7 +42,9 @@ class AnggotaController extends Controller
             'totalProkerTerlaksana',
             'totalProkerBelumTerlaksana',
             'totalProker',
-            'totalInventaris'
+            'totalInventaris',
+            'totalPemasukan',
+            'totalPengeluaran'
         ));
     }
     public function index()
@@ -160,7 +167,7 @@ class AnggotaController extends Controller
         ]);
 
 
-        return response()->json(['success' => true, 'message' => 'Data berhasil diperbarui','data' => $anggota]);
+        return response()->json(['success' => true, 'message' => 'Data berhasil diperbarui', 'data' => $anggota]);
     }
 
     public function show($id)
