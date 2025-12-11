@@ -18,15 +18,16 @@ class KeuanganController extends Controller
     // Menyimpan transaksi baru
     public function store(Request $request)
     {
-        $request->validate([
-            'tanggal' => 'required|date',
-            'keterangan' => 'required|string|max:255',
-            'jenis' => 'required|in:pemasukan,pengeluaran',
-            'jumlah' => 'required|integer|min:1',
-        ]);
+        // $request->validate([
+        //     'tanggal' => 'required|date',
+        //     'keterangan' => 'required|string|max:255',
+        //     'jenis' => 'required|in:pemasukan,pengeluaran',
+        //     'jumlah' => 'required|integer|min:1',
+        // ]);
 
         Keuangan::create($request->only(['tanggal', 'keterangan', 'jenis', 'jumlah']));
 
-        return redirect()->back()->with('success', 'Transaksi berhasil ditambahkan.');
+        toast('Data Berhasil Ditambahkan', 'success');
+        return redirect()->back();
     }
 }

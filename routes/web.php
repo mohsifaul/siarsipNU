@@ -70,3 +70,4 @@ Route::post('/proker/{id}', [ProkerController::class, 'hapusProker'])->name('pro
 Route::get('/getProkerFiles/{id}', [ProkerController::class, 'getFiles'])->name('proker.getFiles');
 
 Route::get('/data-keuangan', [KeuanganController::class, 'index'])->name('keuangan');
+Route::post('/data-keuangan/tambah', [KeuanganController::class, 'store'])->name('keuangan.store');
